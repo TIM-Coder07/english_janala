@@ -1,0 +1,28 @@
+
+const loadLession = () => {
+  fetch("https://openapi.programming-hero.com/api/levels/all")
+    .then((res) => res.json())
+    .then((lessionItem) => displayLession(lessionItem));
+};
+
+const displayLession = (lessons) => {
+  // console.log(lessons);
+
+  const levelCon = document.getElementById("levelCon");
+  levelCon.innerHTML = " ";
+
+  for (let lesson of lessons.data) {
+console.log(lesson);
+
+
+    const btnDiv = document.createElement("div");
+    btnDiv.innerHTML = `
+     <button class=" btn btn-outline btn-primary">
+     <i class="fa-solid fa-book-open"></i>Lesson - ${lesson.level_no}
+     </button>`;
+
+     levelCon.append(btnDiv)
+  }
+};
+
+loadLession();
